@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0037)http://www.mattpelham.com/blackjack/# -->
+<HTML xmlns="http://www.w3.org/1999/xhtml" class=" canvas canvastext geolocation rgba hsla multiplebgs borderimage borderradius boxshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions  video audio localstorage sessionstorage webworkers applicationcache fontface"><HEAD><META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<TITLE>HTML5开发的扑克牌 -由HTML5中文网整理收集，更多精彩请关注 html5China.com</TITLE>
+<LINK href="./index_files/blackjack.css" rel="stylesheet" type="text/css">
+<STYLE type="text/css">
+<!--
+html,body{
+	margin:0px;	
+	padding:0px;
+	color:#FFF;
+	background-color: #000;
+	background-image: url(img/Floor.jpg);
+	background-repeat:repeat;
+	background-position:top center;
+	background-attachment:scroll;
+	min-width:1000px;
+	min-height:500px;
+	width:100%;
+	height:100%;
+	z-index:-1;
+	overflow:hidden;
+}
+body,td,th {
+	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size: 14px;
+}
+a, a:link, a:visited{
+	color:#FFF;
+	text-decoration:none;
+}
+-->
+</STYLE>
+<SCRIPT type="text/javascript" src="./index_files/jquery-1.4.2.min.js"></SCRIPT>
+<SCRIPT type="text/javascript" src="./index_files/zach.min.js"></SCRIPT>
+<SCRIPT type="text/javascript" src="./index_files/modernizr-1.1.min.js"></SCRIPT><STYLE>@font-face{font-family:testfont;src:url('data:font/ttf;base64,AAEAAAAMAIAAAwBAT1MvMliohmwAAADMAAAAVmNtYXCp5qrBAAABJAAAANhjdnQgACICiAAAAfwAAAAEZ2FzcP//AAMAAAIAAAAACGdseWYv5OZoAAACCAAAANxoZWFk69bnvwAAAuQAAAA2aGhlYQUJAt8AAAMcAAAAJGhtdHgGDgC4AAADQAAAABRsb2NhAIQAwgAAA1QAAAAMbWF4cABVANgAAANgAAAAIG5hbWUgXduAAAADgAAABPVwb3N03NkzmgAACHgAAAA4AAECBAEsAAUAAAKZAswAAACPApkCzAAAAesAMwEJAAACAAMDAAAAAAAAgAACbwAAAAoAAAAAAAAAAFBmRWQAAAAgqS8DM/8zAFwDMwDNAAAABQAAAAAAAAAAAAMAAAADAAAAHAABAAAAAABGAAMAAQAAAK4ABAAqAAAABgAEAAEAAgAuqQD//wAAAC6pAP///9ZXAwAAAAAAAAACAAAABgBoAAAAAAAvAAEAAAAAAAAAAAAAAAAAAAABAAIAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAEACoAAAAGAAQAAQACAC6pAP//AAAALqkA////1lcDAAAAAAAAAAIAAAAiAogAAAAB//8AAgACACIAAAEyAqoAAwAHAC6xAQAvPLIHBADtMrEGBdw8sgMCAO0yALEDAC88sgUEAO0ysgcGAfw8sgECAO0yMxEhESczESMiARDuzMwCqv1WIgJmAAACAFUAAAIRAc0ADwAfAAATFRQWOwEyNj0BNCYrASIGARQGKwEiJj0BNDY7ATIWFX8aIvAiGhoi8CIaAZIoN/43KCg3/jcoAWD0JB4eJPQkHh7++EY2NkbVRjY2RgAAAAABAEH/+QCdAEEACQAANjQ2MzIWFAYjIkEeEA8fHw8QDxwWFhwWAAAAAQAAAAIAAIuYbWpfDzz1AAsEAAAAAADFn9IuAAAAAMWf0i797/8zA4gDMwAAAAgAAgAAAAAAAAABAAADM/8zAFwDx/3v/98DiAABAAAAAAAAAAAAAAAAAAAABQF2ACIAAAAAAVUAAAJmAFUA3QBBAAAAKgAqACoAWgBuAAEAAAAFAFAABwBUAAQAAgAAAAEAAQAAAEAALgADAAMAAAAQAMYAAQAAAAAAAACLAAAAAQAAAAAAAQAhAIsAAQAAAAAAAgAFAKwAAQAAAAAAAwBDALEAAQAAAAAABAAnAPQAAQAAAAAABQAKARsAAQAAAAAABgAmASUAAQAAAAAADgAaAUsAAwABBAkAAAEWAWUAAwABBAkAAQBCAnsAAwABBAkAAgAKAr0AAwABBAkAAwCGAscAAwABBAkABABOA00AAwABBAkABQAUA5sAAwABBAkABgBMA68AAwABBAkADgA0A/tDb3B5cmlnaHQgMjAwOSBieSBEYW5pZWwgSm9obnNvbi4gIFJlbGVhc2VkIHVuZGVyIHRoZSB0ZXJtcyBvZiB0aGUgT3BlbiBGb250IExpY2Vuc2UuIEtheWFoIExpIGdseXBocyBhcmUgcmVsZWFzZWQgdW5kZXIgdGhlIEdQTCB2ZXJzaW9uIDMuYmFlYzJhOTJiZmZlNTAzMiAtIHN1YnNldCBvZiBKdXJhTGlnaHRiYWVjMmE5MmJmZmU1MDMyIC0gc3Vic2V0IG9mIEZvbnRGb3JnZSAyLjAgOiBKdXJhIExpZ2h0IDogMjMtMS0yMDA5YmFlYzJhOTJiZmZlNTAzMiAtIHN1YnNldCBvZiBKdXJhIExpZ2h0VmVyc2lvbiAyIGJhZWMyYTkyYmZmZTUwMzIgLSBzdWJzZXQgb2YgSnVyYUxpZ2h0aHR0cDovL3NjcmlwdHMuc2lsLm9yZy9PRkwAQwBvAHAAeQByAGkAZwBoAHQAIAAyADAAMAA5ACAAYgB5ACAARABhAG4AaQBlAGwAIABKAG8AaABuAHMAbwBuAC4AIAAgAFIAZQBsAGUAYQBzAGUAZAAgAHUAbgBkAGUAcgAgAHQAaABlACAAdABlAHIAbQBzACAAbwBmACAAdABoAGUAIABPAHAAZQBuACAARgBvAG4AdAAgAEwAaQBjAGUAbgBzAGUALgAgAEsAYQB5AGEAaAAgAEwAaQAgAGcAbAB5AHAAaABzACAAYQByAGUAIAByAGUAbABlAGEAcwBlAGQAIAB1AG4AZABlAHIAIAB0AGgAZQAgAEcAUABMACAAdgBlAHIAcwBpAG8AbgAgADMALgBiAGEAZQBjADIAYQA5ADIAYgBmAGYAZQA1ADAAMwAyACAALQAgAHMAdQBiAHMAZQB0ACAAbwBmACAASgB1AHIAYQBMAGkAZwBoAHQAYgBhAGUAYwAyAGEAOQAyAGIAZgBmAGUANQAwADMAMgAgAC0AIABzAHUAYgBzAGUAdAAgAG8AZgAgAEYAbwBuAHQARgBvAHIAZwBlACAAMgAuADAAIAA6ACAASgB1AHIAYQAgAEwAaQBnAGgAdAAgADoAIAAyADMALQAxAC0AMgAwADAAOQBiAGEAZQBjADIAYQA5ADIAYgBmAGYAZQA1ADAAMwAyACAALQAgAHMAdQBiAHMAZQB0ACAAbwBmACAASgB1AHIAYQAgAEwAaQBnAGgAdABWAGUAcgBzAGkAbwBuACAAMgAgAGIAYQBlAGMAMgBhADkAMgBiAGYAZgBlADUAMAAzADIAIAAtACAAcwB1AGIAcwBlAHQAIABvAGYAIABKAHUAcgBhAEwAaQBnAGgAdABoAHQAdABwADoALwAvAHMAYwByAGkAcAB0AHMALgBzAGkAbAAuAG8AcgBnAC8ATwBGAEwAAAAAAgAAAAAAAP+BADMAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAAAAQACAQIAEQt6ZXJva2F5YWhsaQ==')}</STYLE>
+<SCRIPT type="text/javascript" src="./index_files/blackjack.min.js"></SCRIPT>
+</HEAD><BODY>
+<div id="Table"> 
+    <div id="Hands"> 
+        <div id="Player"><span class="Payout"></span><span class="Wager"></span><span class="Score">0</span></div> 
+    	<div id="Dealer"><span class="Score">0</span></div> 
+    </div> 
+	<div id="Shoe"></div> 
+<div id="Discard"></div> 
+    <div id="Cards"> 
+    
+</div> 
+    <div id="Chips"> 
+    	<a href="#" id="Bet5" class="Chip Locked" title="Bet $5"></a> 
+    	<a href="#" id="Bet25" class="Chip Locked" title="Bet $25"></a> 
+    	<a href="#" id="Bet50" class="Chip Locked" title="Bet $50"></a> 
+    	<a href="#" id="Bet100" class="Chip Locked" title="Bet $100"></a> 
+    	<a href="#" id="Bet500" class="Chip Locked" title="Bet $500"></a> 
+    </div> 
+	<div id="Actions"> 
+    	<a href="#" id="Stand" class="Action Locked" title="Stand"></a> 
+    	<a href="#" id="Hit" class="Action Locked" title="Hit"></a> 
+    	<a href="#" id="Split" class="Action Locked" title="Split"></a> 
+    	<a href="#" id="DoubleDown" class="Action Locked" title="Double Down"></a> 
+    	<a href="#" id="Surrender" class="Action Locked" title="Surrender"></a> 
+    </div> 
+    <div id="Cash"> 
+    	$ 0
+    </div> 
+    <div id="Options"> 
+    	<a href="#" id="Deal" class="Option" title="Deal">Deal</a> 
+    	<a href="#" id="CancelWager" class="Option" title="Clear Wager">Clear</a> 
+    </div> 
+    <div id="Message"> 
+    
+    </div> 
+    <div id="Logo"> 
+    
+    </div>
+    <div class="cyr">由<a href="http://www.html5china.com">HTML5中文网</a>整理收集，更多精彩请关注 www.HTML5China.com <script src="http://s15.cnzz.com/stat.php?id=2297124&web_id=2297124" language="JavaScript"></script></div>
+</div> 
+</BODY></HTML>
